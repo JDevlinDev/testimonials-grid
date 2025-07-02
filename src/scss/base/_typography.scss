@@ -1,0 +1,29 @@
+body {
+  font-size: var(--tg-font-body-size);
+  font-family: "Barlow Semi Condensed", sans-serif;
+  color: var(--tg-color-grayblue);
+}
+
+.tg-card {
+  &__header {
+    h2 {
+      font-weight: 500;
+      font-size: 0.8125rem;
+
+      span {
+        font-size: 0.6875rem;
+      }
+    }
+  }
+
+  &__testimonial {
+    p {
+      line-height: 1.125rem;
+    }
+    p > strong {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 1.5rem;
+    }
+  }
+}

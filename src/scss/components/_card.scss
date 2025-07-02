@@ -1,0 +1,104 @@
+.tg-card {
+  padding: 26px 32px;
+  border-radius: 0.5rem;
+  box-shadow: 2.5rem 3.75rem 3rem -3rem hsl(var(--tg-value-grayblue), 0.25);
+
+  &__header {
+    display: flex;
+    margin-bottom: 1rem;
+
+    img {
+      width: 28px;
+      height: auto;
+      border-radius: 50%;
+    }
+    h2 {
+      margin-left: 1rem;
+      span {
+        display: block;
+      }
+    }
+  }
+
+  &__testimonial {
+    strong {
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &:first-child {
+    background-color: var(--tg-color-violet);
+    background-image: url("../images/bg-pattern-quotation.svg");
+    background-position: calc(100% - 24px) 0;
+    background-repeat: no-repeat;
+    color: var(--tg-text-light);
+
+    .tg-card__header {
+      img {
+        box-sizing: content-box;
+        border: 2px solid var(--tg-subtext-light);
+      }
+      h2 {
+        span {
+          color: var(--tg-subtext-light);
+        }
+      }
+    }
+
+    .tg-card__testimonial {
+      color: var(--tg-color-lightgray);
+      
+      strong {
+        color: var(--tg-text-light);
+        margin-bottom: 1rem;
+      }
+    }
+
+
+  }
+
+  &:nth-child(2) {
+    background-color: var(--tg-color-grayblue);
+    color: var(--tg-text-light);
+    h2 {
+      span {
+        color: var(--tg-subtext-light);
+      }
+    }
+  }
+
+  &:nth-child(3) {
+    background-color: var(--tg-color-white);
+    color: Var(--tg-text-dark);
+    h2 {
+      span {
+        color: var(--tg-subtext-dark);
+      }
+    }
+  }
+
+  &:nth-child(4) {
+    background-color: var(--tg-color-blackblue);
+    color: var(--tg-text-light);
+    h2 {
+      span {
+        color: var(--tg-subtext-light);
+      }
+    }
+    img {
+      box-sizing: content-box;
+      border: 2px solid var(--tg-color-violet);
+    }
+  }
+
+  &:nth-child(5) {
+    background-color: var(--tg-color-white);
+    color: Var(--tg-text-dark);
+    h2 {
+      span {
+        color: var(--tg-subtext-dark);
+      }
+    }
+  }
+}

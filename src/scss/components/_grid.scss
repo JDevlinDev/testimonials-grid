@@ -1,0 +1,54 @@
+@use "../utils/mixins" as *;
+
+.tg-grid {
+  display: grid;
+  padding: 1.5rem;
+  width: min(95%, 75rem);
+  min-width: 20rem;
+  margin: auto auto;
+  grid-auto-columns: 1fr;
+  grid-template-areas:
+    "one"
+    "two"
+    "three"
+    "four"
+    "five";
+  column-gap: 1.875rem;
+  row-gap: 1.5rem;
+}
+
+.tg-card {
+  &:nth-child(1) {
+    grid-area: one;
+  }
+  &:nth-child(2) {
+    grid-area: two;
+  }
+  &:nth-child(3) {
+    grid-area: three;
+  }
+  &:nth-child(4) {
+    grid-area: four;
+  }
+  &:nth-child(5) {
+    grid-area: five;
+  }
+}
+
+@include breakpoints("md") {
+  .tg-grid {
+    grid-template-areas:
+      "one one"
+      "two five"
+      "three five"
+      "four five";
+  }
+}
+
+@include breakpoints("lg") {
+  .tg-grid {
+    grid-template-areas:
+      "one one two five"
+      "three four four five";
+  }
+}
