@@ -24,5 +24,11 @@
     "prettier": "^3.4.2",
     "push-dir": "^0.4.1",
     "svgo": "^3.3.2"
+  },
+  "allowScripts": {
+    "@parcel/transformer-sass@2.16.4": true,
+    "prettier@3.8.4": true,
+    "push-dir@0.4.1": true,
+    "svgo@3.3.3": true
   }
 }
