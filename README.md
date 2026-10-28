@@ -1,91 +1,154 @@
-# Frontend Mentor - Testimonials grid section
+# Testimonials Grid Section
 
-![Design preview for the Testimonials grid section coding challenge](./design/desktop-preview.jpg)
+A responsive, bento-style testimonials grid built from the
+[Frontend Mentor "Testimonials grid section"](https://www.frontendmentor.io/challenges/testimonials-grid-section-Nnw6J7Un7)
+challenge. It's plain HTML and modular Sass, bundled with Parcel and deployed to GitHub Pages.
 
-## Welcome! 👋
+- **Repository:** https://github.com/JDevlinDev/testimonials-grid
+- **Live site:** https://jdevlindev.github.io/testimonials-grid/
 
-Thanks for checking out this front-end coding challenge.
+## Overview
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+The page shows five graduate testimonials as cards. The layout changes with the viewport:
 
-**To do this challenge, you need a basic understanding of HTML and CSS.**
+| Viewport            | Layout                                                                  |
+| ------------------- | ----------------------------------------------------------------------- |
+| `< 48rem` (mobile)  | One column; cards stack in source order                                 |
+| `≥ 48rem` (tablet)  | Two columns; card 1 spans the top row, card 5 fills the right column    |
+| `≥ 62rem` (desktop) | Four-column bento grid; card 1 spans two columns, card 5 spans two rows |
 
-## The challenge
+The layout uses CSS Grid `grid-template-areas` only. There is no JavaScript.
 
-Your challenge is to build out this testimonials grid section and get it looking as close to the design as possible.
+## Tech Stack
 
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
+- **HTML5**: semantic markup (`main`, `article`, `header`, `blockquote`)
+- **Sass (SCSS)**: modular `@use` / `@forward` structure
+- **[Parcel 2](https://parceljs.org/)**: dev server and production bundler
+- **[push-dir](https://www.npmjs.com/package/push-dir)**: publishes `dist/` to the `gh-pages` branch
+- **Prettier** and **SVGO**: formatting and SVG optimization (dev tooling)
+- **Font:** [Barlow Semi Condensed](https://fonts.google.com/specimen/Barlow+Semi+Condensed), loaded from Google Fonts
 
-Your users should be able to:
+## Getting Started
 
-- View the optimal layout for the site depending on their device's screen size
+### Prerequisites
 
-Want some support on the challenge? [Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+- Node.js (developed against Node 24) and npm
 
-## Where to find everything
+### Install
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design. 
+```bash
+git clone https://github.com/JDevlinDev/testimonials-grid.git
+cd testimonials-grid
+npm ci
+```
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+`package-lock.json` is committed, so `npm ci` installs the exact dependency versions the project was built with.
 
-If you would like the design files (we provide Sketch & Figma versions) to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+### Scripts
 
-You will find all the required assets in the `/images` folder. The assets are already optimized.
+| Command           | Description                                                                                                          |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `npm start`       | Starts the Parcel dev server at `http://localhost:4321`, bound to `0.0.0.0` so other devices on the LAN can reach it |
+| `npm run build`   | Cleans old output, then makes a production build in `dist/` with relative asset paths (`--public-url ./`)            |
+| `npm run push-gh` | Builds, then pushes `dist/` to the `gh-pages` branch                                                                 |
+| `npm run cleanup` | Deletes `dist/` and `.parcel-cache/`                                                                                 |
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+The entry point is `src/index.html`, set by the `source` field in `package.json`.
 
-## Building your project
+## Project Structure
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+```
+src/
+├── index.html                  # Page markup (entry point)
+├── images/
+│   ├── bg-pattern-quotation.svg
+│   └── image-*.jpg             # Testimonial avatars
+└── scss/
+    ├── style.scss              # Root stylesheet: pulls in base, page, components
+    ├── base/
+    │   ├── _reset.scss         # CSS reset
+    │   ├── _theme.scss         # Design tokens (colors, font size) as CSS custom properties
+    │   ├── _typography.scss    # Font family and text styles
+    │   └── _accessibility.scss # .visually-hidden utility
+    ├── components/
+    │   ├── _grid.scss          # Grid container and responsive template areas
+    │   └── _card.scss          # Card styles and per-card color variants
+    ├── page/
+    │   └── _home.scss          # Page-level layout (body background, centering)
+    └── utils/
+        └── _mixins.scss        # breakpoints() media-query mixin
+```
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+## Accessibility
 
-## Deploying your project
+The design has no visible page title, but the page still needs an `<h1>` so screen-reader users get the same context sighted users get from the layout. The heading outline is:
 
-As mentioned above, there are many ways to host your project for free. Our recommended hosts are:
+```
+h1  Verified Graduate Testimonials   (visually hidden)
+└─ h2  One per testimonial card
+```
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+The `<h1>` uses the `.visually-hidden` utility instead of `display: none`. The utility removes the heading from the visual layout but keeps it in the accessibility tree, so screen readers still announce it.
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+## Styling Conventions
 
-## Create a custom `README.md`
+### Naming
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+Classes use a `tg-` (testimonials grid) prefix with BEM-style elements:
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+- `.tg-grid`: the grid container
+- `.tg-card`, `.tg-card__header`, `.tg-card__testimonial`: the card block and its elements
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+### Design tokens
 
-## Submitting your solution
+Every color is defined in `src/scss/base/_theme.scss` in two layers:
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
+```scss
+--tg-value-violet: 263, 55%, 52%;               /* raw HSL channels */
+--tg-color-violet: hsl(var(--tg-value-violet)); /* usable color */
+```
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+Keeping the raw channels separate lets alpha variants be built with `hsla(var(--tg-value-*), <alpha>)`, for example `--tg-subtext-light` and the card box-shadow.
 
-## Sharing your solution
+| Token                  | Value                | Usage                        |
+| ---------------------- | -------------------- | ---------------------------- |
+| `--tg-color-violet`    | `hsl(263, 55%, 52%)` | Card 1 background, accents   |
+| `--tg-color-grayblue`  | `hsl(217, 19%, 35%)` | Card 2 background, body text |
+| `--tg-color-blackblue` | `hsl(219, 29%, 14%)` | Card 4 background            |
+| `--tg-color-white`     | `hsl(0, 0%, 100%)`   | Cards 3 and 5 background     |
+| `--tg-color-lightgray` | `hsl(0, 0%, 81%)`    | Card 1 quote text            |
+| `--tg-color-lightgb`   | `hsl(210, 46%, 95%)` | Page background, light text  |
 
-There are multiple places you can share your solution:
+### Breakpoints
 
-1. Share your solution page in the **#finished-projects** channel of the [community](https://www.frontendmentor.io/community). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+Breakpoints are declared in `src/scss/utils/_mixins.scss` and used through the mixin:
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+```scss
+@use "../utils/mixins" as *;
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+@include breakpoints("md") { /* min-width: 48rem */ }
+```
 
-## Got feedback for us?
+Available keys are `xs` (0), `sm` (16rem), `md` (48rem), `lg` (62rem) and `xl` (75rem). An unknown key triggers a Sass `@warn` and falls back to `xs`.
 
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
+### Card variants
 
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
+Each card's color scheme and grid area is assigned by position with `:nth-child()` in `_card.scss` and `_grid.scss`. **Reordering or adding `<article>` elements in `index.html` changes their styling.** Keep the markup order in sync with the stylesheets.
 
-**Have fun building!** 🚀
+## Deployment
+
+The site is served from the `gh-pages` branch through GitHub Pages:
+
+```bash
+npm run push-gh
+```
+
+The script builds a clean production bundle and force-publishes `dist/` to `gh-pages`. `dist/` is git-ignored on `master`.
+
+## Acknowledgements
+
+- Design and assets: [Frontend Mentor](https://www.frontendmentor.io)
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT) © Jason Sherrick
