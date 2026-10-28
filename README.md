@@ -48,10 +48,10 @@ npm ci
 
 | Command           | Description                                                                                                          |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `npm start`       | Starts the Parcel dev server at `http://localhost:4321`, bound to `0.0.0.0` so other devices on the LAN can reach it |
+| `npm start`       | Starts the Parcel dev server at `http://localhost:4321`, bound to `0.0.0.0` so other devices on the LAN can reach it. Dev output goes to `dist-dev/` so it never mixes with production builds |
 | `npm run build`   | Cleans old output, then makes a production build in `dist/` with relative asset paths (`--public-url ./`)            |
 | `npm run push-gh` | Builds, then pushes `dist/` to the `gh-pages` branch                                                                 |
-| `npm run cleanup` | Deletes `dist/` and `.parcel-cache/`                                                                                 |
+| `npm run cleanup` | Deletes `dist/`, `dist-dev/` and `.parcel-cache/`                                                                    |
 
 The entry point is `src/index.html`, set by the `source` field in `package.json`.
 
