@@ -23,9 +23,6 @@ build
 # Templates
 *-template*
 
-# Dependency lock files
-package-lock.json
-
 # Compressed files
 *.zip
 
