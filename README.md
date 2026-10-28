@@ -24,7 +24,7 @@ The layout uses CSS Grid `grid-template-areas` only. There is no JavaScript.
 - **HTML5**: semantic markup (`main`, `article`, `header`, `blockquote`)
 - **Sass (SCSS)**: modular `@use` / `@forward` structure
 - **[Parcel 2](https://parceljs.org/)**: dev server and production bundler
-- **[push-dir](https://www.npmjs.com/package/push-dir)**: publishes `dist/` to the `gh-pages` branch
+- **[gh-pages](https://www.npmjs.com/package/gh-pages)**: publishes `dist/` to the `gh-pages` branch
 - **Prettier** and **SVGO**: formatting and SVG optimization (dev tooling)
 - **Font:** [Barlow Semi Condensed](https://fonts.google.com/specimen/Barlow+Semi+Condensed), loaded from Google Fonts
 
@@ -143,7 +143,7 @@ The site is served from the `gh-pages` branch through GitHub Pages:
 npm run push-gh
 ```
 
-The script builds a clean production bundle and force-publishes `dist/` to `gh-pages`. `dist/` is git-ignored on `master`.
+The script builds a clean production bundle, then uses `gh-pages` to replace the contents of the `gh-pages` branch with `dist/` and push it to `origin` as a new commit. `dist/` is git-ignored on `master`.
 
 ## Acknowledgements
 

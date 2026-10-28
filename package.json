@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx parcel --host 0.0.0.0 --port 4321",
     "build": "npm run cleanup && npx parcel build --public-url ./",
-    "push-gh": "npm run build && push-dir --dir=dist --branch=gh-pages --cleanup --verbose",
+    "push-gh": "npm run build && gh-pages --dist dist --branch gh-pages",
     "cleanup": "rm -rf dist .parcel-cache"
   },
   "keywords": [
@@ -21,15 +21,14 @@
   "license": "MIT",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.13.3",
+    "gh-pages": "^6.3.0",
     "parcel": "^2.16.4",
     "prettier": "^3.4.2",
-    "push-dir": "^0.4.1",
     "svgo": "^3.3.2"
   },
   "allowScripts": {
     "@parcel/transformer-sass@2.16.4": true,
     "prettier@3.8.4": true,
-    "push-dir@0.4.1": true,
     "svgo@3.3.3": true,
     "@parcel/watcher@2.5.6": true,
     "@swc/core@1.15.43": true,
