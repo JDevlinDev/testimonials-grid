@@ -145,6 +145,12 @@ npm run push-gh
 
 The script builds a clean production bundle, then uses `gh-pages` to replace the contents of the `gh-pages` branch with `dist/` and push it to `origin` as a new commit. `dist/` is git-ignored on `master`.
 
+## Revisiting the Project (October 2026)
+
+I completed this one back in July 2025, and it's been marked complete on Frontend Mentor ever since. I'm getting ready to take on some new challenges, so I'm dusting off a few old projects first. About 15 months on, this one wouldn't even install cleanly, so I sat down with [Claude Code](https://claude.com/claude-code) to debug it and bring it up to date.
+
+Most of it came down to how much the tooling moved in the meantime. npm's `allowScripts` approval step didn't exist yet when I did this project, so a fresh install greeted me with a wall of warnings I'd never seen. Parcel was never in my `package.json` either, since `npx parcel` just downloads it and runs it if it isn't installed. That worked fine right up until I wanted a build I could actually reproduce. Along the way I also swapped out an abandoned deploy package that had picked up a security advisory, started committing the lockfile I used to write off as local clutter, and fixed a page heading I'd hidden a little *too* well.
+
 ## Acknowledgements
 
 - Design and assets: [Frontend Mentor](https://www.frontendmentor.io)
